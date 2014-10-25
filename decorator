@@ -54,19 +54,18 @@ echo -e "\n\n***PART III***\n"
 echo "0" > ./rewrite-tmp/count
 
 
-export PATH=$PWD:'/usr/bin':$PATH
 echo "Intercepting history"
 git filter-branch -f --env-filter '
 
 COUNT=$(cat ../../rewrite-tmp/count)
 
 TIMESTAMP=$(head -1 ../../rewrite-tmp/arr)
-sed -i '1d' ../../rewrite-tmp/arr
+sed -i "1d" ../../rewrite-tmp/arr
 
 C1="${TIMESTAMP} +0800"
 
 export GIT_AUTHOR_DATE="$C1"
-eportt GIT_COMMITTER_DATE="$C1"
+export GIT_COMMITTER_DATE="$C1"
 
 echo $(echo $COUNT+1|bc) > ../../rewrite-tmp/count
 
