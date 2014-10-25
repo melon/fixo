@@ -24,7 +24,7 @@ git clone https://github.com/melon/fixo.git
 
 ### Configuration
 
-Edit the script `decorator`, and replace `YOURNAME` and `YOUREMAIL` with your own name and email. Make sure that the email you replace with is your **primary Github email address**, or the **private email address **you have told Github to use(more about private email address please refer [this link](https://help.github.com/articles/keeping-your-email-address-private/) ), so that your commits could take effect to reflect commits time on the Contributions panel.
+Edit the script `decorator`, and replace `YOURNAME` and `YOUREMAIL` with your own name and email. Make sure that the email you replace with is your **primary Github email address**, or the **private email address** you have told Github to use(more about private email address please refer [this link](https://help.github.com/articles/keeping-your-email-address-private/) ), so that your commits could take effect to reflect commits time on the Contributions panel.
 
 ### Run Script
 
