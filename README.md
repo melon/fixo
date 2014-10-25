@@ -2,6 +2,13 @@
 
 A bash-based script for making your Github Contributions panel looks productive.
 
+Before
+![before](https://raw.githubusercontent.com/melon/fixo/master/contri-before.png)
+
+After
+![after](https://raw.githubusercontent.com/melon/fixo/master/contri-after.png)
+
+
 ## Usage
 
 1. prerequisites
