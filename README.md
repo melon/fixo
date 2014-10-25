@@ -21,7 +21,7 @@ After
 
 You first need to make sure the following commands are available
 
-`date`, `seq`, `head`, `sed`
+`date`, `seq`, `head`, `sed`, `bc`
 
 ### Clone this repository
 
