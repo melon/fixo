@@ -1,0 +1,78 @@
+#!/bin/bash
+
+#config
+AUTHOR_NAME="YOURNAME"
+AUTHOR_EMAIL="YOUREMAIL"
+
+
+echo -e "\n***PART I***\n"
+echo "Generating commit dates"
+NOW=$(date +%s)
+START=$(echo $NOW-31622400|bc)
+COUNT=-1
+
+mkdir -p ./rewrite-tmp
+> ./rewrite-tmp/arr
+
+while [ "$START" -lt "$NOW" ]
+do
+    RAND=$(echo "144000*$RANDOM/32767"|bc)
+    START=$(echo "$START+$RAND"|bc)
+    if [ "$START" -lt "$NOW" ]
+        then
+            let COUNT+=1
+            >>./rewrite-tmp/arr echo $START
+    fi
+done
+echo "Generation completed"
+
+echo -e "\n\n***PART II***\n"
+echo "Deleting old Git repository in $PWD"
+rm -rf .git*
+echo 'Deletion completed'
+
+git init
+
+git config user.name $AUTHOR_NAME
+git config user.email $AUTHOR_EMAIL
+
+>melon echo ''
+git add melon
+
+echo 'Generating commits'
+for i in $(seq 0 $COUNT); do
+    echo -ne $(echo "$i*100/$COUNT" | bc)"%\r"
+    >>melon echo 'x'
+    git commit -am 'x' >/dev/null
+done
+echo '100% completed!'
+
+
+echo -e "\n\n***PART III***\n"
+
+
+echo "0" > ./rewrite-tmp/count
+
+
+export PATH=$PWD:'/usr/bin':$PATH
+echo "Intercepting history"
+git filter-branch -f --env-filter '
+
+COUNT=$(cat ../../rewrite-tmp/count)
+
+TIMESTAMP=$(head -1 ../../rewrite-tmp/arr)
+sed -i '1d' ../../rewrite-tmp/arr
+
+C1="${TIMESTAMP} +0800"
+
+export GIT_AUTHOR_DATE="$C1"
+eportt GIT_COMMITTER_DATE="$C1"
+
+echo $(echo $COUNT+1|bc) > ../../rewrite-tmp/count
+
+echo "\r\c"
+
+' --tag-name-filter cat -- --branches --tags
+echo "Interception completed"
+
+rm -rf ./rewrite-tmp
